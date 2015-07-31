@@ -216,9 +216,9 @@ you're having issues.
 # Docker
 
 Create a .env file like this
-    
-   % HUBOT_SLACK_TOKEN=xxxxxxxxxxx
+  
+    % HUBOT_SLACK_TOKEN=xxxxxxxxxxx
 
 Run with docker-compose
 
-   % docker-compose up -d
+    % docker-compose up -d
