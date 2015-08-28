@@ -28,10 +28,10 @@ class History
     while @cache.length > @keep
       @cache.shift()
     @robot.brain.data.history = @cache
-    msg.http(process.env.HUBOT_ELASTICSEARCH_URL)
-        .post(JSON.stringify(message)) (err, res, body) ->
-          if err
-            msg.send "couldn't save history : #{err}"
+    #msg.http(process.env.HUBOT_ELASTICSEARCH_URL)
+    #    .post(JSON.stringify(message)) (err, res, body) ->
+    #      if err
+    #        msg.send "couldn't save history : #{err}"
 
   show: (lines) ->
     if (lines > @cache.length)

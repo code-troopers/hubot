@@ -2,8 +2,6 @@ hubot:
  build: .
  restart: always
  env_file: .env
- environment:
-  - DATABASE_URL=db
  links:
   - db
  ports:
@@ -12,3 +10,8 @@ hubot:
 db:
  image: postgres
  restart: always
+ env_file: .env
+ volumes:
+  - /app/hubot/postgres/data:/var/lib/postgresql/data
+ ports:
+  - "5432:5432"

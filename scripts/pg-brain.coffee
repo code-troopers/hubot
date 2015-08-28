@@ -7,11 +7,12 @@
 # Notes:
 #   Run the following SQL to setup the table and column for storage.
 #
-#   CREATE TABLE brain (
-#     key TEXT unique,
-#     value JSON default '{}'::json,
-#     CONSTRAINT brain_pkey PRIMARY KEY (key)
-#   )
+#   CREATE TABLE hubot (
+#     id CHARACTER VARYING(1024) NOT NULL,
+#     storage TEXT,
+#     CONSTRAINT hubot_pkey PRIMARY KEY (id)
+#   );
+#  insert into hubot values('1', '{}');
 #
 # Author:
 #   Yannick Schutz
@@ -28,21 +29,22 @@ module.exports = (robot) ->
 
   client = new Postgres.Client(database_url)
   client.connect()
-  robot.logger.debug "pg-brain connected to #{database_url}."
 
   query = client.query("SELECT storage FROM hubot LIMIT 1")
-  query.on 'row', (row) ->
-    if row['storage']?
-      robot.brain.mergeData JSON.parse(row['storage'].toString())
-      robot.logger.debug "pg-brain loaded."
-
   client.on "error", (err) ->
     robot.logger.error err
+  query.on 'row', (row) ->
+    if row['storage']?
+      robot.logger.error "pg-brain loading."
+      robot.brain.mergeData JSON.parse(row['storage'].toString())
+      robot.logger.error "pg-brain loaded."
+
 
   robot.brain.on 'save', (data) ->
     query = client.query("UPDATE hubot SET storage = $1", [JSON.stringify(data)])
-    robot.logger.debug "pg-brain saved."
-
+    query.on 'error', (error) ->
+      robot.logger.error error
+    
   robot.brain.on 'close', ->
     client.end()
 
