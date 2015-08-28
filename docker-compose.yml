@@ -4,6 +4,7 @@ hubot:
  env_file: .env
  links:
   - db
+  - elasticsearch
  ports:
   - 8080
 
@@ -15,3 +16,9 @@ db:
   - /app/hubot/postgres/data:/var/lib/postgresql/data
  ports:
   - "5432:5432"
+
+elasticsearch:
+ image: elasticsearch
+ restart: always
+ volumes:
+  - "/app/hubot/elasticsearch/data:/usr/share/elasticsearch/data"
