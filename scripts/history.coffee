@@ -74,7 +74,7 @@ module.exports = (robot) ->
     msg.send history.show(lines)
 
   robot.respond /search (.*)/i, (msg) ->
-    msg.http(process.env.HUBOT_ELASTICSEARCH_URL + "/_search?q=" + msg.match[1])
+    msg.http(process.env.HUBOT_ELASTICSEARCH_URL + "/_search?q=" + msg.match[1] + "&sort=time")
         .get() (err, res, body) ->
           if err
             msg.send "No result : #{err}"
