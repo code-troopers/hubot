@@ -7,6 +7,10 @@ hubot:
   - elasticsearch
  ports:
   - 8080
+ volumes:
+  - /home/bcousin/hubot/scripts:/opt/hubot/scripts
+  - /home/bcousin/hubot/bin:/opt/hubot/bin
+  - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt
 
 db:
  image: postgres
