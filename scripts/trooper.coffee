@@ -28,11 +28,11 @@ loosers = troopers.concat([
   'tdebarochez'
 ])
 
-reply = (list) -> 
+reply = (list) ->
   '@' + list[Math.floor(Math.random() * list.length)]
 
 module.exports = (robot) ->
   robot.respond /random trooper/i, (msg) ->
-    msg.reply(reply(troopers.filter((nick) -> nick != msg.user.name)))
+    msg.reply(reply(troopers.filter((nick) -> nick != msg.message.user.name)))
   robot.respond /random looser/i, (msg) ->
-    msg.reply(reply(loosers.filter((nick) -> nick != msg.user.name)))
+    msg.reply(reply(loosers.filter((nick) -> nick != msg.message.user.name)))
