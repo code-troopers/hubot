@@ -10,6 +10,7 @@
 # Commands:
 #   hubot random trooper - get one trooper
 #   hubot loser - get a random loser
+#   hubot ios - get a random trooper with a mac
 #
 # Author:
 #   mattboll
@@ -19,6 +20,8 @@ module.exports = (robot) ->
     msg.reply trooper 7
   robot.respond /random looser/i, (msg) ->
     msg.reply trooper 9
+  robot.respond /random ios/i, (msg) ->
+    msg.reply trooper 3
 
 trooper = (max) ->
   num = Math.floor(Math.random() * max)
