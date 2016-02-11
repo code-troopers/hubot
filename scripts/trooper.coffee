@@ -14,31 +14,25 @@
 # Author:
 #   mattboll
 
+troopers = [
+  'cgatay',
+  'rlucas',
+  'benou',
+  'jojo',
+  'nanak',
+  'mattboll',
+  'vmaubert'
+]
+loosers = troopers.concat([
+  'mbitard',
+  'tdebarochez'
+])
+
+reply = (list) ->
+  '@' + list[Math.floor(Math.random() * list.length)]
+
 module.exports = (robot) ->
   robot.respond /random trooper/i, (msg) ->
-    msg.reply trooper 7
+    msg.reply(reply(troopers.filter((nick) -> nick != msg.message.user.name)))
   robot.respond /random looser/i, (msg) ->
-    msg.reply trooper 9
-
-trooper = (max) ->
-  num = Math.floor(Math.random() * max)
-  switch num
-    when 0
-      "@cgatay"
-    when 1
-      "@rlucas"
-    when 2
-      "@benou"
-    when 3
-      "@jojo"
-    when 4
-      "@nanak"
-    when 5
-      "@mattboll"
-    when 6
-      "@vmaubert"
-    when 7
-      "@mbitard"
-    when 8
-      "@tdebarochez"
-
+    msg.reply(reply(loosers.filter((nick) -> nick != msg.message.user.name)))
