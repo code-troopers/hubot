@@ -10,6 +10,7 @@
 # Commands:
 #   hubot assign random url - create a card with url in odj / PR with a random user
 #   hubot assign random url not user - create a card with url in odj / PR with a random user but not user
+#   hubot assign random url ios - create a card with url in odj / PR with a random mac user
 #
 # Author:
 #   mattboll
