@@ -77,6 +77,13 @@ func main() {
 			member = getMembers(users)
 		} else if secondArg != "none" {
 			member = getId(secondArg)
+		} else if secondArg == "ios" {
+			member = getMembers([]string{
+				"@vmaubert",
+				"@nanak",
+				"@mattboll",
+				"@jojo"
+			})
 		}
 	} else {
 		member = getMembers([]string{})
