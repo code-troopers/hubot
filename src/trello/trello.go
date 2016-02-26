@@ -75,8 +75,6 @@ func main() {
 		if secondArg == "not" && len(os.Args) > 3 {
 			users := os.Args[3:len(os.Args)]
 			member = getMembers(users)
-		} else if secondArg != "none" {
-			member = getId(secondArg)
 		} else if secondArg == "ios" {
 			member = getMembers([]string{
 				"@vmaubert",
@@ -84,6 +82,8 @@ func main() {
 				"@mattboll",
 				"@jojo"
 			})
+		} else if secondArg != "none" {
+			member = getId(secondArg)
 		}
 	} else {
 		member = getMembers([]string{})
